@@ -8,6 +8,7 @@ WASD napit liikkuminen
 
 
 spacebar ampuminen
+
 ![Alt text](shootsekvenssi.png)
 
 Luokka rakenne:
