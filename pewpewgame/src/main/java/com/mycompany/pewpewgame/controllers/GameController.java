@@ -27,6 +27,14 @@ public class GameController {
         this.gc = gc;
     }
     
+    /**
+    * Metodi luo uuden Bulletin
+    * Playerin kohdalle ja samalla Orientationilla.
+    *
+    * @param   x   Playerin X positio
+    * @param   y   Playerin Y positio
+    * @param   o   Playerin orientaatio.
+    */
     public void spawnBullet(int x, int y, Orientation o){
         Bullet bul = new Bullet(x, y, o);
         bullets.add(bul);

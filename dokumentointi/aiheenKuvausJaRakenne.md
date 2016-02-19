@@ -4,7 +4,11 @@ Käyttäjät: Pelaaja
 
 Kaikkien käyttäjien Toiminnot: 
 WASD napit liikkuminen
+![Alt text](movesekvenssi.png)
+
+
 spacebar ampuminen
+![Alt text](shootsekvenssi.png)
 
 Luokka rakenne:
 
