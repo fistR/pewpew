@@ -1,4 +1,4 @@
 # pewpew
 javalabra
 
-[aiheen kuvaus](dokumentaatio/aiheenKuvausJaRakenne.md)
+[aiheen kuvaus](dokumentointi/aiheenKuvausJaRakenne.md)
