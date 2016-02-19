@@ -3,11 +3,11 @@ Aihe: Peli jossa liikutetaan pelaajaa ja ammutaan lähestyviä pahiksia kunnes k
 Käyttäjät: Pelaaja
 
 Kaikkien käyttäjien Toiminnot: 
-WASD napit liikkuminen
+WASD napit liikkuminen:
 ![Alt text](movesekvenssi.png)
 
 
-spacebar ampuminen
+spacebar ampuminen:
 
 ![Alt text](shootsekvenssi.png)
 
