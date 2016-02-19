@@ -1,0 +1,6 @@
+[Peli]-1>[GameController]
+[GameController]-*>[Bullet]
+[GameController]-1>[Player]
+[Bullet]-1>[Orientation]
+[Player]-1>[Orientation]
+[GameController]-1>[InputHandler]

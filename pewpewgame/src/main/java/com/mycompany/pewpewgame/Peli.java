@@ -1,4 +1,7 @@
 package com.mycompany.pewpewgame;
+import com.mycompany.pewpewgame.objects.Player;
+import com.mycompany.pewpewgame.controllers.InputHandler;
+import com.mycompany.pewpewgame.controllers.GameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -10,7 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import com.mycompany.pewpewgame.InputHandler;
+import javafx.scene.paint.Color;
 
 
 /**
@@ -24,20 +27,23 @@ public class Peli extends Application{
     }
     
     public void start(Stage stage){
-        InputHandler input = new InputHandler();
-        stage.setTitle("PewPew");
         
+        stage.setTitle("PewPew");
+        Canvas canv = new Canvas(512,512);
         Group root = new Group();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        
-        Canvas canv = new Canvas(512,512);
         root.getChildren().add(canv);
         GraphicsContext gc = canv.getGraphicsContext2D();
-        input.registerInputs(scene);
+        
         Timeline gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
         final long timeStart = System.currentTimeMillis();
+        Player player = new Player(10);
+        GameController gameC = new GameController(player, gc);
+        InputHandler input = new InputHandler(gameC);
+        input.registerInputs(scene);  
+        
         KeyFrame kf = new KeyFrame(
         Duration.seconds(0.017),
         new EventHandler<ActionEvent>(){
@@ -45,9 +51,15 @@ public class Peli extends Application{
                 double t = (System.currentTimeMillis() - timeStart)/1000.0;
                 
                 //handle the gameloop
-                input.handleInputs(scene);
-                //clear canvas
-                gc.clearRect(0,0,512,512);
+            input.handleInputs(player);
+                // Clear the canvas
+            gc.setFill( Color.BLACK);
+            gc.fillRect(0,0, 512,512);
+ 
+            gc.setFill( Color.WHITE);
+            gameC.updateBullets();
+            String pointsText = "P";
+            gc.fillText( pointsText, player.getPosX(), player.getPosY() );
                 
             }
         });

@@ -5,3 +5,7 @@ Käyttäjät: Pelaaja
 Kaikkien käyttäjien Toiminnot: 
 WASD napit liikkuminen
 spacebar ampuminen
+
+Luokka rakenne:
+
+![Alt text](luokkakaavio.png)
