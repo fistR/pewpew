@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -98,10 +99,13 @@ public class GameController {
     
     public void updateEnemies(){
         for(GameObject e: enemyC.enemies){
+            gc.setFill(Color.IVORY);
             switch(e.getOrientation().current){
                 case "RIGHT": 
+                    
                     e.setPosX(e.getPosX()+1);
                     gc.fillText( "☹", e.getPosX(), e.getPosY() );
+                    
                     break;
                 case "LEFT": 
                     e.setPosX(e.getPosX()-1);
@@ -116,6 +120,7 @@ public class GameController {
                     gc.fillText( "☹", e.getPosX(), e.getPosY() );
                     break;
             }
+            gc.setFill(Color.WHITE);
             cc.checkForCollisions(e);
         }
     }

@@ -59,7 +59,7 @@ public class Peli extends Application{
                 //handle the gameloop
             input.handleInputs(player);
                 // Clear the canvas
-            gc.setFill( Color.BLACK);
+            gc.setFill( Color.DARKSLATEBLUE);
             gc.fillRect(0,0, 512,512);
             gc.setFill( Color.WHITE);
             gameC.updatePlayer(plr);
