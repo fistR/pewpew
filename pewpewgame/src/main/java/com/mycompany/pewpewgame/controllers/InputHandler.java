@@ -52,7 +52,10 @@ public class InputHandler {
     public void handleInputs(Player player){
         if(player.getHp()<=0){
             if(input.contains("R")){
-            gameC.reset();
+                gameC.reset();
+        }   
+            if(input.contains("ESCAPE")){
+                System.exit(0);
         }
             return;
         }
@@ -78,6 +81,9 @@ public class InputHandler {
         }
         if(input.contains("R")){
             gameC.reset();
+        }
+        if(input.contains("ESCAPE")){
+            System.exit(0);
         }
     }
     

@@ -56,7 +56,7 @@ public class EnemyController {
             public void run() {
                 spawnEnemy();
                 }
-}           , 0, 1, TimeUnit.SECONDS);
+}           , 0, 750, TimeUnit.MILLISECONDS);
     }
     
     public void damageEnemy(GameObject e){
