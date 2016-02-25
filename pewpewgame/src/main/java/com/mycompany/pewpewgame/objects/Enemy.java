@@ -5,17 +5,18 @@
  */
 package com.mycompany.pewpewgame.objects;
 
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
  * @author max
  */
-public class Bullet extends GameObject{
-   
-    public Bullet(int x, int y, Orientation o){
-        super(x,y);
-        this.orientation = new Orientation(o.current);
+public class Enemy extends GameObject{
+    
+    
+    public Enemy(int x, int y){
+        super(x, y); 
+        this.img = new Image("/enemy.jpg");
     }
-
+    
 }

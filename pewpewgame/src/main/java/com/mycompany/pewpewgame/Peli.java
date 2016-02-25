@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
@@ -43,6 +44,11 @@ public class Peli extends Application{
         GameController gameC = new GameController(player, gc);
         InputHandler input = new InputHandler(gameC);
         input.registerInputs(scene);  
+        ImageView plr = new ImageView();
+        plr.setImage(player.getImg());
+        plr.setFitWidth(16);
+        plr.setFitHeight(16);
+        root.getChildren().add(plr);
         
         KeyFrame kf = new KeyFrame(
         Duration.seconds(0.017),
@@ -55,12 +61,12 @@ public class Peli extends Application{
                 // Clear the canvas
             gc.setFill( Color.BLACK);
             gc.fillRect(0,0, 512,512);
- 
             gc.setFill( Color.WHITE);
+            gameC.updatePlayer(plr);
             gameC.updateBullets();
-            String pointsText = "P";
-            gc.fillText( pointsText, player.getPosX(), player.getPosY() );
-                
+            gameC.updateEnemies();
+            gameC.getCc().handleCollisions();
+            gameC.getTextController().updateTexts(gameC.getScore(),gameC.getPlayer().getHp(),gc);
             }
         });
         gameLoop.getKeyFrames().add(kf);

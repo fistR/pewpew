@@ -5,17 +5,13 @@
  */
 package com.mycompany.pewpewgame.objects;
 
-import javafx.scene.canvas.GraphicsContext;
-
 /**
  *
  * @author max
  */
-public class Bullet extends GameObject{
-   
-    public Bullet(int x, int y, Orientation o){
+public class SpawnPoint extends GameObject{
+    
+    public SpawnPoint(int x, int y){
         super(x,y);
-        this.orientation = new Orientation(o.current);
     }
-
 }

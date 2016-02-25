@@ -26,4 +26,20 @@ public class Orientation {
     public String getOrientation(){
         return this.current;
     }
+    
+    public int getRotationInDegrees(){
+        if (this.current.equals("LEFT")){
+            return 90;
+        }
+        else if (this.current.equals("RIGHT")){
+            return 270;
+        }
+        else if (this.current.equals("DOWN")){
+            return 0;
+        }
+        else if(this.current.equals("UP")){
+            return 180;
+        }
+        return 0;
+    }
 }

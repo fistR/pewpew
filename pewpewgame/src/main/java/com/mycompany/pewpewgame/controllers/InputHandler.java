@@ -50,26 +50,34 @@ public class InputHandler {
     }
     
     public void handleInputs(Player player){
-        
+        if(player.getHp()<=0){
+            if(input.contains("R")){
+            gameC.reset();
+        }
+            return;
+        }
         if(input.contains("LEFT")){
             player.setPosX(player.getPosX() - 1);
-            player.orientation.current = "LEFT";
+            player.getOrientation().current = "LEFT";
         }
         if(input.contains("RIGHT")){
             player.setPosX(player.getPosX() + 1);
-            player.orientation.current = "RIGHT";
+            player.getOrientation().current = "RIGHT";
         }
         if(input.contains("UP")){
             player.setPosY(player.getPosY() - 1);
-            player.orientation.current = "UP";
+            player.getOrientation().current = "UP";
         }
         if(input.contains("DOWN")){
             player.setPosY(player.getPosY() + 1);
-            player.orientation.current = "DOWN";
+            player.getOrientation().current = "DOWN";
         }
         if(input.contains("SPACE")){
-            gameC.spawnBullet(player.getPosX(), player.getPosY(), player.orientation);
+            gameC.spawnBullet(player.getPosX() + 6, player.getPosY() - 6, player.getOrientation());
             input.remove("SPACE");
+        }
+        if(input.contains("R")){
+            gameC.reset();
         }
     }
     
