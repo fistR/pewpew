@@ -47,7 +47,7 @@ public class BulletTest {
     
     @Test
     public void constCorrectOrientationSet(){
-        assertEquals("RIGHT", bullet.own.current);
+        assertEquals("RIGHT", bullet.getOrientation().current);
     }
     
         @Test

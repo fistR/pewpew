@@ -11,12 +11,13 @@ import javafx.scene.image.Image;
  *
  * @author max
  */
-public class Player extends GameObject{
+public class Player extends GameObject {
     
     
-    public Player(int hp){
+    public Player(int hp) {
         super(hp);
         this.img = new Image("/player.png");
+        this.speed = 2;
     }
     
 }

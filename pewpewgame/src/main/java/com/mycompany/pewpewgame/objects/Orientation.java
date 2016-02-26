@@ -13,31 +13,29 @@ public class Orientation {
     
     public String current;
     
-    public Orientation(String str){
-
-        this.current = str;
-        
+    public Orientation(String str) {        
+        this.current = str;        
     }
     
-    public void setOrientation(String orientation){
+    public void setOrientation(String orientation) {
         this.current = orientation;
     }
     
-    public String getOrientation(){
+    public String getOrientation() {
         return this.current;
     }
     
-    public int getRotationInDegrees(){
-        if (this.current.equals("LEFT")){
+    public int getRotationInDegrees() {
+        if (this.current.equals("LEFT")) {
             return 90;
         }
-        else if (this.current.equals("RIGHT")){
+        else if (this.current.equals("RIGHT")) {
             return 270;
         }
-        else if (this.current.equals("DOWN")){
+        else if (this.current.equals("DOWN")) {
             return 0;
         }
-        else if(this.current.equals("UP")){
+        else if(this.current.equals("UP")) {
             return 180;
         }
         return 0;

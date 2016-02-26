@@ -12,7 +12,7 @@ package com.mycompany.pewpewgame.objects;
 public class Collision {
     GameObject collisionWith;
     
-    public Collision(GameObject with){
+    public Collision(GameObject with) {
         this.collisionWith = with;
     }
 
@@ -22,7 +22,5 @@ public class Collision {
 
     public void setCollisionWith(GameObject collisionWith) {
         this.collisionWith = collisionWith;
-    }
-    
-    
+    }    
 }

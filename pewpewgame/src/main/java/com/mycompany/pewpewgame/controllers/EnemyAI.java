@@ -18,14 +18,14 @@ public class EnemyAI {
     Player player;
     ScheduledExecutorService exec;
     
-    public EnemyAI(EnemyController ec, Player player){
+    public EnemyAI(EnemyController ec, Player player) {
         this.exec  = new ScheduledThreadPoolExecutor(1);
         this.ec = ec;
         this.player = player;
         decisions();
     }
     
-    private void decisions(){
+    private void decisions() {
         exec.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -34,16 +34,16 @@ public class EnemyAI {
         }, 0, 1000, TimeUnit.MILLISECONDS);
     }
     
-    public void updateDirections(ArrayList<GameObject> enemies){
-        for(GameObject e: enemies){
-            if(Math.abs(e.getPosX()-player.getPosX()) >= Math.abs(e.getPosY()-player.getPosY())){
-                if(e.getPosX() >= player.getPosX()){
+    public void updateDirections(ArrayList<GameObject> enemies) {
+        for(GameObject e: enemies) {
+            if(Math.abs(e.getPosX()-player.getPosX()) >= Math.abs(e.getPosY()-player.getPosY())) {
+                if(e.getPosX() >= player.getPosX()) {
                     e.getOrientation().current = "LEFT";
                 } else {
                     e.getOrientation().current = "RIGHT";
                 }
             } else {
-                if(e.getPosY() >= player.getPosY()){
+                if(e.getPosY() >= player.getPosY()) {
                     e.getOrientation().current = "UP";
                 } else {
                     e.getOrientation().current = "DOWN";

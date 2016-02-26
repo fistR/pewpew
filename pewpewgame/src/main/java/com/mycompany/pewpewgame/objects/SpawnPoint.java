@@ -9,9 +9,9 @@ package com.mycompany.pewpewgame.objects;
  *
  * @author max
  */
-public class SpawnPoint extends GameObject{
+public class SpawnPoint extends GameObject {
     
-    public SpawnPoint(int x, int y){
+    public SpawnPoint(int x, int y) {
         super(x,y);
     }
 }

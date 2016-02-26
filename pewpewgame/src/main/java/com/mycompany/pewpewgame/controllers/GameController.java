@@ -11,30 +11,28 @@ import com.mycompany.pewpewgame.objects.Orientation;
 import com.mycompany.pewpewgame.objects.Player;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 /**
  *
  * @author max
  */
 public class GameController {
+    
     EnemyController enemyC;
     EnemyAI ai;
     CollisionController cc;
-    TextController text;
+    TextController textC;
     Player player;
     int score;
     GraphicsContext gc;
     public ArrayList<Bullet> bullets = new ArrayList();
     
-    public GameController(Player player, GraphicsContext gc){
+    public GameController(Player player, GraphicsContext gc) {
         this.player = player;
         score = 0;
         this.gc = gc;
         this.enemyC = new EnemyController(this);
-        this.text = new TextController();
+        this.textC = new TextController(this);
         this.ai = new EnemyAI(this.enemyC, this.player);
         this.cc = new CollisionController(this.enemyC, this);
     }
@@ -47,92 +45,43 @@ public class GameController {
     * @param   y   Playerin Y positio
     * @param   o   Playerin orientaatio.
     */
-    public void spawnBullet(int x, int y, Orientation o){
+    public void spawnBullet(int x, int y, Orientation o) {
         Bullet bul = new Bullet(x, y, o);
         bullets.add(bul);
-    }
-    
-    public void updateBullets(){
-        for(Bullet b: bullets){
-            switch(b.getOrientation().current){
-                case "RIGHT": 
-                    b.setPosX(b.getPosX()+3);
-                    gc.fillText( ".", b.getPosX(), b.getPosY() );
-                    break;
-                case "LEFT": 
-                    b.setPosX(b.getPosX()-3);
-                    gc.fillText( ".", b.getPosX(), b.getPosY() );
-                    break;
-                case "UP": 
-                    b.setPosY(b.getPosY()-3);
-                    gc.fillText( ".", b.getPosX(), b.getPosY() );
-                    break;
-                case "DOWN": 
-                    b.setPosY(b.getPosY()+3);
-                    gc.fillText( ".", b.getPosX(), b.getPosY() );
-                    break;
-            }
-            cc.checkForCollisions(b);
-        }
-    }
-    
-    
-    public void damagePlayer(){
+    }    
+
+    public void damagePlayer() {
         player.setHp(player.getHp() -1);
         System.out.println("player damaged");
     }
-    
-    public void lose(){
-        
-    }
-    
-    public void updatePlayer(ImageView plr){
-        if(player.getHp()<=0){
-            plr.setImage(null);
-        } else {
-            plr.setImage(player.getImg());
-            plr.setRotate(player.getOrientation().getRotationInDegrees());
-            plr.setX(player.getPosX());
-            plr.setY(player.getPosY()-16);
-        }
-    }
-    
-    public void updateEnemies(){
-        for(GameObject e: enemyC.enemies){
-            gc.setFill(Color.IVORY);
-            switch(e.getOrientation().current){
-                case "RIGHT": 
-                    
-                    e.setPosX(e.getPosX()+1);
-                    gc.fillText( "☹", e.getPosX(), e.getPosY() );
-                    
-                    break;
-                case "LEFT": 
-                    e.setPosX(e.getPosX()-1);
-                    gc.fillText( "☹", e.getPosX(), e.getPosY() );
-                    break;
-                case "UP": 
-                    e.setPosY(e.getPosY()-1);
-                    gc.fillText( "☹", e.getPosX(), e.getPosY() );
-                    break;
-                case "DOWN": 
-                    e.setPosY(e.getPosY()+1);
-                    gc.fillText( "☹", e.getPosX(), e.getPosY() );
-                    break;
-            }
-            gc.setFill(Color.WHITE);
-            cc.checkForCollisions(e);
-        }
-    }
-    
-    public void reset(){
+     
+    public void reset() {
         player.setHp(10);
         setScore(0);
         enemyC.getEnemies().clear();
         bullets.clear();
         player.setPosX(256);
         player.setPosY(256);
-  
+    }
+    
+    public void updateAll() {
+        updateBullets();
+        updateEnemies();
+        textC.updateTexts();
+    }
+    
+    private void updateBullets() {
+        for(Bullet b: bullets){
+            b.move(b.getOrientation());
+            cc.checkForCollisions(b);
+        }
+    }
+    
+    private void updateEnemies() {
+        for(GameObject e: enemyC.enemies) {
+            e.move(e.getOrientation());
+            cc.checkForCollisions(e);
+        }
     }
 
     public Player getPlayer() {
@@ -192,12 +141,10 @@ public class GameController {
     }
 
     public TextController getTextController() {
-        return text;
+        return textC;
     }
 
-    public void setTextController(TextController text) {
-        this.text = text;
-    }
-    
-    
+    public void setTextController(TextController textC) {
+        this.textC = textC;
+    }    
 }

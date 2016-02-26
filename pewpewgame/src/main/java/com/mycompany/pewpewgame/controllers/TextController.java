@@ -15,21 +15,64 @@ import javafx.scene.text.Font;
  */
 public class TextController {
     
-    public void updateTexts(int score, int hp, GraphicsContext gc){
-        Font font = Font.font(16);
-        gc.setFont(font);
-        gc.setLineWidth(3);
-        gc.fillText("SCORE: " + score, 8, 16);
-        gc.fillText("HEALTH: " + hp, 8, 32);
-        
-        if(hp<1){
-            gc.setFill(Color.RED);
-            font= Font.font(36);
-            gc.setFont(font);
-            gc.fillText("YOU ARE DEAD", 120,230);
-            font = Font.font(16);
-            gc.setFont(font);
-            gc.fillText("Press R to reset", 180, 280);
-        }
+    String scoreText;
+    String healthText;
+    String loseText;
+    String restartText;
+    GameController gameC;
+    
+    public TextController(GameController gameC) {
+        this.gameC = gameC;
+        this.scoreText = "SCORE: " + gameC.getScore();
+        this.loseText = "YOU ARE DEAD";
+        this.healthText = "HEALTH: " + gameC.getPlayer().getHp();
+        this.restartText =  "Press R to reset";
     }
+    
+    public void updateTexts() {
+        this.scoreText = "SCORE: " + gameC.getScore();
+        this.healthText = "HEALTH: " + gameC.getPlayer().getHp();
+    }
+
+    public String getScoreText() {
+        return scoreText;
+    }
+
+    public void setScoreText(String scoreText) {
+        this.scoreText = scoreText;
+    }
+
+    public String getHealthText() {
+        return healthText;
+    }
+
+    public void setHealthText(String healthText) {
+        this.healthText = healthText;
+    }
+
+    public String getLoseText() {
+        return loseText;
+    }
+
+    public void setLoseText(String loseText) {
+        this.loseText = loseText;
+    }
+
+    public String getRestartText() {
+        return restartText;
+    }
+
+    public void setRestartText(String restartText) {
+        this.restartText = restartText;
+    }
+
+    public GameController getGameC() {
+        return gameC;
+    }
+
+    public void setGameC(GameController gameC) {
+        this.gameC = gameC;
+    }
+    
+    
 }

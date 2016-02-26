@@ -46,7 +46,7 @@ public class PlayerTest {
 
         @Test
     public void constCorrectOrientationSet(){
-        assertEquals("RIGHT", p.orientation.current);
+        assertEquals("RIGHT", p.getOrientation().current);
     }
     
         @Test

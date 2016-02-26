@@ -24,11 +24,43 @@ public class EnemyController {
     int spawnedcount;
     GameController gameC;
     
-    public EnemyController(GameController gc){
+    public EnemyController(GameController gc) {
         this.gameC = gc;
         this.exec  = new ScheduledThreadPoolExecutor(1);
         this.enemies = new ArrayList();
         this.spawns = new ArrayList();
+        initSpawns();
+        this.spawnedcount = 0;
+        spawner();
+        System.out.println("keke");
+        System.out.println("" + enemies.size());
+    }
+    
+    public void spawnEnemy() {
+        spawnedcount++;
+        enemies.add(new Enemy(spawns.get(spawnedcount % 8).getPosX() ,spawns.get(spawnedcount % 8).getPosY()));
+        System.out.println("Enemies: " + enemies.size());
+        
+    }
+    
+    private void spawner() {
+        exec.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                spawnEnemy();
+                }
+        }, 0, 750, TimeUnit.MILLISECONDS);
+    }
+    
+    public void damageEnemy(GameObject e) {
+        e.setHp(e.getHp()-1);
+        if(e.getHp()<=0){
+            enemies.remove(e);
+            gameC.setScore(gameC.getScore()+10);
+        }
+    }
+
+    public void initSpawns() {
         this.spawns.add(new SpawnPoint(12,12));
         this.spawns.add(new SpawnPoint(500,12));
         this.spawns.add(new SpawnPoint(12,500));
@@ -37,36 +69,8 @@ public class EnemyController {
         this.spawns.add(new SpawnPoint(500,244));
         this.spawns.add(new SpawnPoint(12,244));
         this.spawns.add(new SpawnPoint(244,12));
-        this.spawnedcount = 0;
-        spawner();
-        System.out.println("keke");
-        System.out.println("" + enemies.size());
     }
     
-    public void spawnEnemy(){
-        spawnedcount++;
-        enemies.add(new Enemy(spawns.get(spawnedcount % 8).getPosX() ,spawns.get(spawnedcount % 8).getPosY()));
-        System.out.println("Enemies: " + enemies.size());
-        
-    }
-    
-    private void spawner(){
-        exec.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                spawnEnemy();
-                }
-}           , 0, 750, TimeUnit.MILLISECONDS);
-    }
-    
-    public void damageEnemy(GameObject e){
-        e.setHp(e.getHp()-1);
-        if(e.getHp()<=0){
-            enemies.remove(e);
-            gameC.setScore(gameC.getScore()+10);
-        }
-    }
-
     public ArrayList<GameObject> getEnemies() {
         return enemies;
     }
