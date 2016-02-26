@@ -43,21 +43,29 @@ public class GameObject {
     }
     
     public void move(Orientation o) {
-        if(o.current.equals("LEFT")) {
+        if (o.current.equals("LEFT")) {
             this.posX = this.posX - speed;
-            if(this.posX < 0) this.posX = 0;
+            if (this.posX < 0) {
+                this.posX = 0;
+            }
         }
-        if(o.current.equals("RIGHT")) {
+        if (o.current.equals("RIGHT")) {
             this.posX = this.posX + speed;
-            if(this.posX > 500) this.posX = 500;
+            if (this.posX > 500) {
+                this.posX = 500;
+            }
         }
-        if(o.current.equals("UP")) {
+        if (o.current.equals("UP")) {
             this.posY = this.posY - speed;
-            if(this.posY < 16) this.posY = 16;
+            if (this.posY < 16) {
+                this.posY = 16;
+            }
         }
-        if(o.current.equals("DOWN")) {
+        if (o.current.equals("DOWN")) {
             this.posY = this.posY + speed;
-            if(this.posY > 512) this.posY = 512;
+            if (this.posY > 512) {
+                this.posY = 512;
+            }
         }
     }
     
@@ -109,4 +117,13 @@ public class GameObject {
     public void setImg(Image img) {
         this.img = img;
     }   
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+    
 }

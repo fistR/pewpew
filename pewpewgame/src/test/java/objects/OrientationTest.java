@@ -44,7 +44,32 @@ public class OrientationTest {
 
     @Test
     public void constructorCurrentCorrect(){
-        assertEquals("LEFT", o.current);
+        assertEquals("LEFT", o.getOrientation());
     }
-
+    
+    @Test
+    public void degreesCorrectLeft() {
+        assertEquals(90, o.getRotationInDegrees());
+    }
+    
+    @Test
+    public void degreesCorrectRight() {
+        o.setOrientation("RIGHT");
+        assertEquals(270, o.getRotationInDegrees());
+    }
+    @Test
+    public void degreesCorrectDown() {
+        o.setOrientation("DOWN");
+        assertEquals(0, o.getRotationInDegrees());
+    }
+    @Test
+    public void degreesCorrectUp() {
+        o.setOrientation("UP");
+        assertEquals(180, o.getRotationInDegrees());
+    }
+    @Test
+    public void degreesCorrectFalse() {
+        o.setOrientation("LOL");
+        assertEquals(0, o.getRotationInDegrees());
+    }
 }

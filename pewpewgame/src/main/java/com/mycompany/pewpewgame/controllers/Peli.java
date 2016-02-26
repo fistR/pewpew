@@ -15,12 +15,21 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
 
 /**
- *
+ * This game uses JavaFX to visualize the 
+ * game logic. Using the TimeLine class, a 
+ * game loop of 60 frames per second is initialized.
+ * 
+ * After initialization, the game loop consists
+ * of the basic sequence of redrawing canvas, 
+ * then registering the inputs of the user,
+ * computing one frame of game logic + collisions
+ * and finally rendering the updated game state.
+ * 
+ * Rules and instructions found in README.txt
  * @author max
  */
 public class Peli extends Application {
@@ -42,7 +51,7 @@ public class Peli extends Application {
     }
     
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
         final long timeStart = initAll(stage);
         runGameLoop(timeStart);
         stage.show();    
@@ -65,14 +74,14 @@ public class Peli extends Application {
     
     public void initStage(Stage stage) {
         stage.setTitle("PewPew");
-        canv = new Canvas(512,512);
+        canv = new Canvas(512, 512);
         root = new Group();
         scene = new Scene(root);
         stage.setScene(scene);
         root.getChildren().add(canv);
         gc = canv.getGraphicsContext2D();
         
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
                 Platform.exit();
@@ -83,7 +92,7 @@ public class Peli extends Application {
     
     public void initGame() {
         player = new Player(10);
-        gameC = new GameController(player, gc);
+        gameC = new GameController(player);
     }
     
     public void initRenderer() {
@@ -103,7 +112,7 @@ public class Peli extends Application {
     private void runGameLoop(long timeStart) {
         kf = new KeyFrame(Duration.seconds(0.017), new EventHandler<ActionEvent>() {
             public void handle(ActionEvent ae) {
-                double t = (System.currentTimeMillis() - timeStart)/1000.0;
+                double t = (System.currentTimeMillis() - timeStart) / 1000.0;
                 handleGameLoop();
             }
         });
@@ -127,6 +136,6 @@ public class Peli extends Application {
         // Render updated all objects and
         //  UI with their updated positions
         // and values
-        renderer.renderAll(plr,player);
+        renderer.renderAll(plr, player);
     }
 }

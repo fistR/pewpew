@@ -28,14 +28,11 @@ public class Orientation {
     public int getRotationInDegrees() {
         if (this.current.equals("LEFT")) {
             return 90;
-        }
-        else if (this.current.equals("RIGHT")) {
+        } else if (this.current.equals("RIGHT")) {
             return 270;
-        }
-        else if (this.current.equals("DOWN")) {
+        } else if (this.current.equals("DOWN")) {
             return 0;
-        }
-        else if(this.current.equals("UP")) {
+        } else if (this.current.equals("UP")) {
             return 180;
         }
         return 0;

@@ -12,6 +12,6 @@ package com.mycompany.pewpewgame.objects;
 public class SpawnPoint extends GameObject {
     
     public SpawnPoint(int x, int y) {
-        super(x,y);
+        super(x, y);
     }
 }

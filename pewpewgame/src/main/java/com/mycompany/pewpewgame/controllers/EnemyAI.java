@@ -9,8 +9,14 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
- * @author max
+ * The AI class updates the
+ * orientation of every
+ * enemy to face the player
+ * and selects the direction based
+ * on the greater X or Y distance.
+ * The enemy speed is a constant,
+ * and therefore not handled by AI.
+ * 
  */
 public class EnemyAI {
     EnemyController ec;
@@ -35,15 +41,15 @@ public class EnemyAI {
     }
     
     public void updateDirections(ArrayList<GameObject> enemies) {
-        for(GameObject e: enemies) {
-            if(Math.abs(e.getPosX()-player.getPosX()) >= Math.abs(e.getPosY()-player.getPosY())) {
-                if(e.getPosX() >= player.getPosX()) {
+        for (GameObject e: enemies) {
+            if (Math.abs(e.getPosX() - player.getPosX()) >= Math.abs(e.getPosY() - player.getPosY())) {
+                if (e.getPosX() >= player.getPosX()) {
                     e.getOrientation().current = "LEFT";
                 } else {
                     e.getOrientation().current = "RIGHT";
                 }
             } else {
-                if(e.getPosY() >= player.getPosY()) {
+                if (e.getPosY() >= player.getPosY()) {
                     e.getOrientation().current = "UP";
                 } else {
                     e.getOrientation().current = "DOWN";

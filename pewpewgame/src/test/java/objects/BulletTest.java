@@ -60,16 +60,47 @@ public class BulletTest {
         assertEquals(256, bullet.getPosY());
     }
     
-        @Test(expected=NullPointerException.class)
-    public void constCorrectOrientation2(){
-        bullet.setOrientation(null);
-        bullet.getOrientation();
-    }
     
     @Test
     public void getOrientationTest(){
         Bullet bullet2 = new Bullet(0,256,new Orientation("LEFT"));
         assertEquals("LEFT", bullet2.getOrientation().current);
+    }
+    
+    @Test
+    public void moveLeftCorrect() {
+        int x = bullet.getPosX();
+        bullet.getOrientation().current = "LEFT";
+        bullet.move(bullet.getOrientation());
+        assertEquals(bullet.getSpeed(), x - bullet.getPosX());
+        
+    }
+    
+    @Test
+    public void moveRightCorrect() {
+        int x = bullet.getPosX();
+        bullet.getOrientation().current = "RIGHT";
+        bullet.move(bullet.getOrientation());
+        assertEquals(bullet.getSpeed(), bullet.getPosX() - x);
+        
+    }
+    
+    @Test
+    public void moveUpCorrect() {
+        int y = bullet.getPosY();
+        bullet.getOrientation().current = "UP";
+        bullet.move(bullet.getOrientation());
+        assertEquals(bullet.getSpeed(), y - bullet.getPosY());
+        
+    }
+    
+    @Test
+    public void moveDownCorrect() {
+        int y = bullet.getPosY();
+        bullet.getOrientation().current = "DOWN";
+        bullet.move(bullet.getOrientation());
+        assertEquals(bullet.getSpeed(), bullet.getPosY() - y);
+        
     }
 
 }

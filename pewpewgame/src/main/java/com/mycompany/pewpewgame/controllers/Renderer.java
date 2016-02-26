@@ -22,7 +22,7 @@ public class Renderer {
     GraphicsContext gc;
     GameController gameC;
         
-    public Renderer (GraphicsContext gc, GameController gameC) {
+    public Renderer(GraphicsContext gc, GameController gameC) {
         this.gc = gc;
         this.gameC = gameC;
     }
@@ -35,33 +35,34 @@ public class Renderer {
     }
     
     public void refreshCanvas() {
-        gc.setFill( Color.DARKSLATEBLUE);
-        gc.fillRect(0,0, 512,512);
-        gc.setFill( Color.WHITE);
+        gc.setFill(Color.DARKSLATEBLUE);
+        gc.fillRect(0, 0, 512, 512);
+        gc.setFill(Color.WHITE);
     }
     
     private void renderPlayer(ImageView plr, Player player) {
-        if(player.getHp()<=0){
+        if (player.getHp() <= 0) {
             plr.setImage(null);
         } else {
             plr.setImage(player.getImg());
             plr.setRotate(player.getOrientation().getRotationInDegrees());
             plr.setX(player.getPosX());
-            plr.setY(player.getPosY()-16);
+            plr.setY(player.getPosY() - 16);
         }
     }
     
     private void renderBullets() {
-        for(Bullet b : gameC.getBullets())
-            gc.fillText( ".", b.getPosX(), b.getPosY() );
+        for (Bullet b : gameC.getBullets()) {
+            gc.fillText(".", b.getPosX(), b.getPosY());
+        }
     }
     
     private void renderEnemies() {
-        for(GameObject e : gameC.getEnemyC().getEnemies()) {
+        for (GameObject e : gameC.getEnemyC().getEnemies()) {
             Font font = Font.font(16);
             gc.setFont(font);
             gc.setFill(Color.IVORY);
-            gc.fillText( "☹", e.getPosX(), e.getPosY() );
+            gc.fillText("☹", e.getPosX(), e.getPosY());
             gc.setFill(Color.WHITE);
         }
         
@@ -74,11 +75,11 @@ public class Renderer {
         gc.fillText(gameC.getTextController().getScoreText(), 8, 16);
         gc.fillText(gameC.getTextController().getHealthText(), 8, 32);
         
-        if(gameC.getPlayer().getHp()<1) {
+        if (gameC.getPlayer().getHp() < 1) {
             gc.setFill(Color.RED);
             font = Font.font(36);
             gc.setFont(font);
-            gc.fillText(gameC.getTextController().getLoseText(), 120,230);
+            gc.fillText(gameC.getTextController().getLoseText(), 120, 230);
             font = Font.font(16);
             gc.setFont(font);
             gc.fillText(gameC.getTextController().getRestartText(), 180, 280);

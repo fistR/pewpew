@@ -44,24 +44,5 @@ public class PlayerTest {
     public void tearDown() {
     }
 
-        @Test
-    public void constCorrectOrientationSet(){
-        assertEquals("RIGHT", p.getOrientation().current);
-    }
-    
-        @Test
-    public void constCorrectXSet(){
-        assertEquals(256, p.getPosX());
-    }
-    
-        @Test
-    public void constCorrectYSet(){       
-        assertEquals(256, p.getPosY());
-    }
-    
-        @Test
-    public void constCorrectHPSet(){
-        assertEquals(10, p.getHp());
-    }
     
 }

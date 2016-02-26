@@ -38,7 +38,7 @@ public class EnemyController {
     
     public void spawnEnemy() {
         spawnedcount++;
-        enemies.add(new Enemy(spawns.get(spawnedcount % 8).getPosX() ,spawns.get(spawnedcount % 8).getPosY()));
+        enemies.add(new Enemy(spawns.get(spawnedcount % 8).getPosX(), spawns.get(spawnedcount % 8).getPosY()));
         System.out.println("Enemies: " + enemies.size());
         
     }
@@ -53,22 +53,22 @@ public class EnemyController {
     }
     
     public void damageEnemy(GameObject e) {
-        e.setHp(e.getHp()-1);
-        if(e.getHp()<=0){
+        e.setHp(e.getHp() - 1);
+        if (e.getHp() <= 0) {
             enemies.remove(e);
-            gameC.setScore(gameC.getScore()+10);
+            gameC.setScore(gameC.getScore() + 10);
         }
     }
 
     public void initSpawns() {
-        this.spawns.add(new SpawnPoint(12,12));
-        this.spawns.add(new SpawnPoint(500,12));
-        this.spawns.add(new SpawnPoint(12,500));
-        this.spawns.add(new SpawnPoint(500,500));
-        this.spawns.add(new SpawnPoint(244,500));
-        this.spawns.add(new SpawnPoint(500,244));
-        this.spawns.add(new SpawnPoint(12,244));
-        this.spawns.add(new SpawnPoint(244,12));
+        this.spawns.add(new SpawnPoint(12, 12));
+        this.spawns.add(new SpawnPoint(500, 12));
+        this.spawns.add(new SpawnPoint(12, 500));
+        this.spawns.add(new SpawnPoint(500, 500));
+        this.spawns.add(new SpawnPoint(244, 500));
+        this.spawns.add(new SpawnPoint(500, 244));
+        this.spawns.add(new SpawnPoint(12, 244));
+        this.spawns.add(new SpawnPoint(244, 12));
     }
     
     public ArrayList<GameObject> getEnemies() {

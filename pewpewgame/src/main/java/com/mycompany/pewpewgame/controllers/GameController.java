@@ -10,11 +10,12 @@ import com.mycompany.pewpewgame.objects.GameObject;
 import com.mycompany.pewpewgame.objects.Orientation;
 import com.mycompany.pewpewgame.objects.Player;
 import java.util.ArrayList;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
- *
- * @author max
+ *  This is the master controller of the
+ *  game logic. It uses subcontrollers and object methods to complete most of its tasks.
+ *  rendering is done using the Renderer class.
+ * 
  */
 public class GameController {
     
@@ -24,13 +25,17 @@ public class GameController {
     TextController textC;
     Player player;
     int score;
-    GraphicsContext gc;
     public ArrayList<Bullet> bullets = new ArrayList();
     
-    public GameController(Player player, GraphicsContext gc) {
+    /**
+     * The constructor needs a player instance
+     * and then initializes the controllers of 
+     * more specific tasks
+     * @param player 
+     */
+    public GameController(Player player) {
         this.player = player;
         score = 0;
-        this.gc = gc;
         this.enemyC = new EnemyController(this);
         this.textC = new TextController(this);
         this.ai = new EnemyAI(this.enemyC, this.player);
@@ -38,23 +43,30 @@ public class GameController {
     }
     
     /**
-    * Metodi luo uuden Bulletin
-    * Playerin kohdalle ja samalla Orientationilla.
-    *
-    * @param   x   Playerin X positio
-    * @param   y   Playerin Y positio
-    * @param   o   Playerin orientaatio.
+    * Instantiates a bullet object at
+    * the given x,y location and orientation.
+    * 
+    * @param   x   Players X position
+    * @param   y   Players Y position
+    * @param   o   Players orientation
     */
     public void spawnBullet(int x, int y, Orientation o) {
         Bullet bul = new Bullet(x, y, o);
         bullets.add(bul);
     }    
-
+    /**
+     * Causes damage to the player object
+     * by decrementing the hp attribute.
+     */
     public void damagePlayer() {
-        player.setHp(player.getHp() -1);
+        player.setHp(player.getHp() - 1);
         System.out.println("player damaged");
     }
-     
+    /**
+     * Resets all game logic and
+     * states to
+     * default, i.e restarting the game.
+     */
     public void reset() {
         player.setHp(10);
         setScore(0);
@@ -63,22 +75,30 @@ public class GameController {
         player.setPosX(256);
         player.setPosY(256);
     }
-    
+    /**
+     * The master logic update function
+     */
     public void updateAll() {
         updateBullets();
         updateEnemies();
         textC.updateTexts();
     }
-    
+    /**
+     * Moves every existing bullet
+     * by its speed and orientation.
+     */
     private void updateBullets() {
-        for(Bullet b: bullets){
+        for (Bullet b: bullets) {
             b.move(b.getOrientation());
             cc.checkForCollisions(b);
         }
     }
-    
+    /**
+     * Moves every existing enemy
+     * by its speed and orientation.
+     */
     private void updateEnemies() {
-        for(GameObject e: enemyC.enemies) {
+        for (GameObject e: enemyC.enemies) {
             e.move(e.getOrientation());
             cc.checkForCollisions(e);
         }
@@ -98,14 +118,6 @@ public class GameController {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public GraphicsContext getGc() {
-        return gc;
-    }
-
-    public void setGc(GraphicsContext gc) {
-        this.gc = gc;
     }
 
     public ArrayList<Bullet> getBullets() {

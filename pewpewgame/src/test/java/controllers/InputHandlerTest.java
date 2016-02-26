@@ -22,9 +22,6 @@ import org.junit.Test;
 public class InputHandlerTest {
     GameController gameC;
     Player p;
-    GraphicsContext gc;
-    Canvas canv;
-    
     
     public InputHandlerTest() {
     }
@@ -39,16 +36,10 @@ public class InputHandlerTest {
     
     @Before
     public void setUp() {
-        p = new Player(10);
-        gameC = new GameController(p, gc);
     }
     
     @After
     public void tearDown() {
     }
 
-    @Test
-    public void derp(){
-        
-    } 
 }
