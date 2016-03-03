@@ -1,8 +1,8 @@
-Aihe: Peli jossa liikutetaan pelaajaa ja ammutaan lähestyviä pahiksia kunnes kuollaan.
+**Aihe:** Peli jossa liikutetaan pelaajaa ja ammutaan lähestyviä pahiksia kunnes kuollaan.
 
-Käyttäjät: Pelaaja
+**Käyttäjät:** Pelaaja
 
-Pelaajan toiminnot: 
+**Pelaajan toiminnot: **
 Nuolinäppäimet liikuttaa pelaajaa näppäimen suuntaan.
 
 Spacebar ampuu ammuksen, tai monta jos pitää näppäintä
@@ -12,17 +12,17 @@ R resetoi pelin.
 
 ESC sulkee pelin.
 
-Luokka rakenne:
+**Luokka rakenne:**
 
 ![Alt text](luokkakaavio.png)
 
-Pelin logiikan kulku sekvenssi:
+**Pelin logiikan kulku sekvenssi:**
 ![Alt text](gameloop.png)
 
-Ammuksen elinikä:
+**Ammuksen elinikä:**
 ![Alt text](bulletlife.png)
 
-Pahiksen elinikä:
+**Pahiksen elinikä:**
 ![Alt text](enemylife.png)
 
 
