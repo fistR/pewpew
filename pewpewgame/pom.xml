@@ -41,6 +41,9 @@
                     <targetTests>
                         <param>*</param>
                     </targetTests>
+                    <excludedClasses>
+                        <param>com.mycompany.pewpewgame.controllers.Peli</param>
+                    </excludedClasses>
                 </configuration>
         </plugin>
       <plugin>

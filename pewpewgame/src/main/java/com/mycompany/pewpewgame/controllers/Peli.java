@@ -34,17 +34,17 @@ import javafx.stage.WindowEvent;
  */
 public class Peli extends Application {
     
-    Canvas canv;
-    Group root;
-    Scene scene;
-    GraphicsContext gc;
-    Renderer renderer;    
-    Timeline gameLoop;
-    KeyFrame kf;
-    Player player;
-    GameController gameC;
-    InputHandler input;
-    ImageView plr;
+    static Canvas canv;
+    static Group root;
+    static Scene scene;
+    static GraphicsContext gc;
+    static Renderer renderer;    
+    static Timeline gameLoop;
+    static KeyFrame kf;
+    static Player player;
+    public static GameController gameC;
+    static InputHandler input;
+    static ImageView plr;
     
     public static void main(String[] args) {
         launch(args);
@@ -57,7 +57,7 @@ public class Peli extends Application {
         stage.show();    
     }
     
-    public long initAll(Stage stage) {
+    public static long initAll(Stage stage) {
         initStage(stage);
         initGameLoop();
         final long timeStart = System.currentTimeMillis();
@@ -67,12 +67,12 @@ public class Peli extends Application {
         return timeStart;
     }
     
-    public void initGameLoop() {
+    public static void initGameLoop() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
     }
     
-    public void initStage(Stage stage) {
+    public static void initStage(Stage stage) {
         stage.setTitle("PewPew");
         canv = new Canvas(512, 512);
         root = new Group();
@@ -90,12 +90,12 @@ public class Peli extends Application {
         });
     }
     
-    public void initGame() {
+    public static void initGame() {
         player = new Player(10);
         gameC = new GameController(player);
     }
     
-    public void initRenderer() {
+    public static void initRenderer() {
         plr = new ImageView();
         plr.setImage(player.getImg());
         plr.setFitWidth(16);
@@ -104,12 +104,12 @@ public class Peli extends Application {
         renderer = new Renderer(gc, gameC);
     }
     
-    public void initInputs() {
+    public static void initInputs() {
         input = new InputHandler(gameC);
         input.registerInputs(scene); 
     }
 
-    private void runGameLoop(long timeStart) {
+    public static void runGameLoop(long timeStart) {
         kf = new KeyFrame(Duration.seconds(0.017), new EventHandler<ActionEvent>() {
             public void handle(ActionEvent ae) {
                 double t = (System.currentTimeMillis() - timeStart) / 1000.0;
@@ -120,7 +120,7 @@ public class Peli extends Application {
         gameLoop.play();
     }
     
-    private void handleGameLoop() {
+    private static void handleGameLoop() {
         // Clear the canvas and fill background
         renderer.refreshCanvas();
                 
