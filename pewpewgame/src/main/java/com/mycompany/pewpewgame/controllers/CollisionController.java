@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * This class detects
  * and handles collisions
- * between GameObjecs instances.
+ * between GameObject instances.
  * 
  */
 public class CollisionController {
