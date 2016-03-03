@@ -1,6 +1,11 @@
 #Manuaaliset testit#
 
 HUOM: Jotkut näistä on myös testattu JUnit testeillä.
+Jotkut testit on vaan suoraan nähty että toimii, toiset
+ovat saatu esim freezeaamalla liike ja testaamalla hitaasti
+monta kertaa, tai sitten konsoli valvonnalla laittamalla
+oikeaan paikkaan koodia soutti. Saattaa koodissa vielä olla jotain
+souttia mutta se ei häiritse.
 
 **Ohjelma toimii**:
 - Ohjelma käynnistyy omalla koneella ja laitoksen koneella.
