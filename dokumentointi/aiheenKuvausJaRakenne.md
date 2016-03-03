@@ -2,15 +2,33 @@ Aihe: Peli jossa liikutetaan pelaajaa ja ammutaan lähestyviä pahiksia kunnes k
 
 Käyttäjät: Pelaaja
 
-Kaikkien käyttäjien Toiminnot: 
-WASD napit liikkuminen:
+Pelaajan toiminnot: 
+Nuolinäppäimet liikuttaa pelaajaa näppäimen suuntaan.
+
+Spacebar ampuu ammuksen, tai monta jos pitää näppäintä
+pohjassa tarpeeksi kauan.
+
+R resetoi pelin.
+
+ESC sulkee pelin.
 ![Alt text](movesekvenssi.png)
 
 
 spacebar ampuminen:
 
-![Alt text](shootsekvenssi.png)
+![Alt text](bulletlife.png)
 
 Luokka rakenne:
 
 ![Alt text](luokkakaavio.png)
+
+Pelin logiikan kulku sekvenssi:
+![Alt text](gameloop.png)
+
+Ammuksen elinikä:
+![Alt text](bulletlife.png)
+
+Pahiksen elinikä:
+![Alt text](enemylife.png)
+
+
