@@ -6,7 +6,10 @@
 package com.mycompany.pewpewgame.objects;
 
 /**
- *
+ * SpawnPoints are empty non interactable
+ * GameObjects serving simply for reference 
+ * points for the EnemyController to spawn
+ * Enemy GameObjects at.
  * @author max
  */
 public class SpawnPoint extends GameObject {

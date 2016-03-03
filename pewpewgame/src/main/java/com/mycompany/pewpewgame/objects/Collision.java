@@ -6,12 +6,20 @@
 package com.mycompany.pewpewgame.objects;
 
 /**
- *
+ * Collision object to document collisions
+ * each frame.
  * @author max
  */
 public class Collision {
-    GameObject collisionWith;
     
+    private GameObject collisionWith;
+    /**
+     * Collisions are given to GameObjects
+     * and have their target GameObject
+     * saved in the collisionWith to identify
+     * both parties involved.
+     * @param with 
+     */
     public Collision(GameObject with) {
         this.collisionWith = with;
     }

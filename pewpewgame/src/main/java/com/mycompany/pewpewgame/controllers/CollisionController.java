@@ -19,8 +19,8 @@ import java.util.ArrayList;
  */
 public class CollisionController {
     
-    EnemyController eC;
-    GameController gc;
+    private EnemyController eC;
+    private GameController gc;
     /**
      * All documented collisions.
      */
@@ -41,7 +41,7 @@ public class CollisionController {
     }
     /**
      * Master collision checker method
-     * for covering all GameObjects
+     * for covering all GameObjects.
      * @param o 
      */
     public void checkForCollisions(GameObject o) {
@@ -51,15 +51,15 @@ public class CollisionController {
     /**
      * Checks for collisions if 
      * GameObject is of type Enemy
-     * and adds findings to colls ArrayList
-     * @param o 
+     * and adds findings to colls ArrayList.
+     * @param o given GameObject.
      */
     public void checkForEnemy(GameObject o) {
         if (o.getClass() == Enemy.class) {
-            if (Math.abs(o.getPosX() - gc.player.getPosX()) <= 12 && Math.abs(o.getPosY() - gc.player.getPosY()) <= 12) {
+            if (Math.abs(o.getPosX() - gc.getPlayer().getPosX()) <= 12 && Math.abs(o.getPosY() - gc.getPlayer().getPosY()) <= 12) {
                 Collision c = new Collision(o);
-                gc.player.setCollision(c);
-                colls.add(gc.player);
+                gc.getPlayer().setCollision(c);
+                colls.add(gc.getPlayer());
             }
         }
     }
@@ -67,7 +67,7 @@ public class CollisionController {
      * Checks for collisions if
      * GameObject is of type Bullet
      * and adds findings to colls ArrayList.
-     * @param o 
+     * @param o given GameObject.
      */
     public void checkForBullet(GameObject o) {
         if (o.getClass() == Bullet.class) {
@@ -76,7 +76,7 @@ public class CollisionController {
                 o.setCollision(c);
                 colls.add(o);
             }
-            for (GameObject e : eC.enemies) {                     
+            for (GameObject e : eC.getEnemies()) {                     
                 if (Math.abs(o.getPosX() - e.getPosX()) <= 12 && Math.abs(o.getPosY() - e.getPosY()) <= 12) {
                     Collision c = new Collision(e);
                     o.setCollision(c);
@@ -104,23 +104,31 @@ public class CollisionController {
         }
         colls.removeAll(colls);
     }
-    
+    /**
+     * Handles the collision if GameObject is
+     * of type Bullet.
+     * @param o given GameObject.
+     */
     private void handleBulletCollisions(GameObject o) {
         if (o.getClass() == Bullet.class) {
             if (o.getCollision().getCollisionWith() == null) {
-                gc.bullets.remove(o);
+                gc.getBullets().remove(o);
             } else {
                 eC.damageEnemy(o.getCollision().getCollisionWith());
-                gc.bullets.remove(o);
+                gc.getBullets().remove(o);
             }
         }
     }
-
+    /**
+     * Handles the collision if given GameObject
+     * is of type Player.
+     * @param o 
+     */
     private void handlePlayerCollisions(GameObject o) {
-        if (o == gc.player) {
+        if (o == gc.getPlayer()) {
             System.out.println("damage");
             gc.damagePlayer();
-            eC.enemies.remove(gc.player.getCollision().getCollisionWith());
+            eC.getEnemies().remove(gc.getPlayer().getCollision().getCollisionWith());
         }
     }
 }

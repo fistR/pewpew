@@ -14,16 +14,21 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
+ * The EnemyController handles the Enemy GameObjects,
+ * spawning and destroying them.
  * @author max
  */
 public class EnemyController {
-    public ArrayList<GameObject> enemies;
-    ArrayList<SpawnPoint> spawns;
-    ScheduledExecutorService exec;
-    int spawnedcount;
-    GameController gameC;
-    
+    private ArrayList<GameObject> enemies;
+    private ArrayList<SpawnPoint> spawns;
+    private ScheduledExecutorService exec;
+    private int spawnedcount;
+    private GameController gameC;
+    /**
+     * Starts a thread for spawning enemies
+     * every x seconds.
+     * @param gc the GameController.
+     */
     public EnemyController(GameController gc) {
         this.gameC = gc;
         this.exec  = new ScheduledThreadPoolExecutor(1);
@@ -35,14 +40,21 @@ public class EnemyController {
         System.out.println("keke");
         System.out.println("" + enemies.size());
     }
-    
+    /**
+     * Spawns an Enemy object at the next
+     * spawnpoint in the list. It is not random, but
+     * unpredictable enough.
+     */
     public void spawnEnemy() {
         spawnedcount++;
         enemies.add(new Enemy(spawns.get(spawnedcount % 8).getPosX(), spawns.get(spawnedcount % 8).getPosY()));
         System.out.println("Enemies: " + enemies.size());
         
     }
-    
+    /**
+     * This method is the actual spawner thread, 
+     * running every 750ms the spawnEnemy function.
+     */
     private void spawner() {
         exec.scheduleAtFixedRate(new Runnable() {
             @Override
@@ -51,7 +63,11 @@ public class EnemyController {
                 }
         }, 0, 750, TimeUnit.MILLISECONDS);
     }
-    
+    /**
+     * This method damages a given GameObject,
+     * decreasing its hp attribute by 1.
+     * @param e given GameObject.
+     */
     public void damageEnemy(GameObject e) {
         e.setHp(e.getHp() - 1);
         if (e.getHp() <= 0) {
@@ -59,7 +75,9 @@ public class EnemyController {
             gameC.setScore(gameC.getScore() + 10);
         }
     }
-
+    /**
+     * Initializes the preset spawnpoints.
+     */
     public void initSpawns() {
         this.spawns.add(new SpawnPoint(12, 12));
         this.spawns.add(new SpawnPoint(500, 12));

@@ -8,7 +8,9 @@ package com.mycompany.pewpewgame.objects;
 import javafx.scene.image.Image;
 
 /**
- *
+ * The Enemy GameObject are the 
+ * objects that will try to kill the player.
+ * Spawning enemies is done in the EnemyController.
  * @author max
  */
 public class Enemy extends GameObject {    

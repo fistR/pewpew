@@ -8,11 +8,10 @@ package com.mycompany.pewpewgame.objects;
 import javafx.scene.image.Image;
 
 /**
- *
+ * The player GameObject.
  * @author max
  */
 public class Player extends GameObject {
-    
     
     public Player(int hp) {
         super(hp);

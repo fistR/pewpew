@@ -19,18 +19,27 @@ import java.util.concurrent.TimeUnit;
  * 
  */
 public class EnemyAI {
-    EnemyController ec;
-    Enemy enemy;
-    Player player;
-    ScheduledExecutorService exec;
-    
+    private final EnemyController ec;
+    private Enemy enemy;
+    private final Player player;
+    private final ScheduledExecutorService exec;
+    /**
+     * The constructor also initializes 
+     * the ThreadPoolExecutor and starts
+     * the AI decision timer.
+     * @param ec the EnemyController.
+     * @param player the Player.
+     */
     public EnemyAI(EnemyController ec, Player player) {
         this.exec  = new ScheduledThreadPoolExecutor(1);
         this.ec = ec;
         this.player = player;
         decisions();
     }
-    
+    /**
+     * Every 1000 milliseconds the AI
+     * updates the directions of the enemies.
+     */
     private void decisions() {
         exec.scheduleAtFixedRate(new Runnable() {
             @Override
@@ -39,7 +48,12 @@ public class EnemyAI {
             }
         }, 0, 1000, TimeUnit.MILLISECONDS);
     }
-    
+    /**
+     * Update the direction of every Enemy by calculating
+     * and choosing firstly the greater of the X or Y
+     * values and then choosing the direction accordingly. 
+     * @param enemies all the Enemies active.
+     */
     public void updateDirections(ArrayList<GameObject> enemies) {
         for (GameObject e: enemies) {
             if (Math.abs(e.getPosX() - player.getPosX()) >= Math.abs(e.getPosY() - player.getPosY())) {

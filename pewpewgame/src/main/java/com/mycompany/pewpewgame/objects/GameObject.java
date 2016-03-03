@@ -8,40 +8,50 @@ package com.mycompany.pewpewgame.objects;
 import javafx.scene.image.Image;
 
 /**
- *
+ * The parent GameObject class from which
+ * other GameObjects inherit most of their 
+ * attributes and methods. Notably each GO
+ * has position, orientation, heath, speed and
+ * a collision(if any) attribute.
  * @author max
  */
 public class GameObject {
-    int posX;
-    int posY;
-    int hp;
-    int speed;
-    Orientation orientation;
-    Image img;
-    Collision collision;
-    
+    protected int posX;
+    protected int posY;
+    protected int hp;
+    protected int speed;
+    protected Orientation orientation;
+    protected Image img;
+    protected Collision collision;
+    /**
+     * Creating an object with just HP given.
+     * Usually player.
+     * @param hp 
+     */
     public GameObject(int hp) {
         this.posX = 256;
         this.posY = 256;
         this.hp = hp;
         this.orientation = new Orientation("RIGHT");
     }
-    
+    /**
+     * Creating an object with position specified.
+     * 
+     * @param x
+     * @param y 
+     */
     public GameObject(int x, int y) {
         this.posX = x;
         this.posY = y;
         this.hp = 1;
         this.orientation = new Orientation("RIGHT");
     }
-    
-    public GameObject(int x, int y, Orientation o, Image img) {
-        this.posX = x;
-        this.posY = y;
-        this.hp = 1;
-        this.orientation = o;
-        this.img = img;
-    }
-    
+    /**
+     * Moving the played in the direction it is
+     * facing by as many x or y as its speed
+     * attribute is. This happens every frame.
+     * @param o 
+     */
     public void move(Orientation o) {
         if (o.current.equals("LEFT")) {
             this.posX = this.posX - speed;

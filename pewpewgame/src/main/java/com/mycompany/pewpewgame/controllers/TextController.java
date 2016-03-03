@@ -10,17 +10,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- *
+ * For controlling the UI text in the game.
  * @author max
  */
 public class TextController {
     
-    String scoreText;
-    String healthText;
-    String loseText;
-    String restartText;
-    GameController gameC;
-    
+    private String scoreText;
+    private String healthText;
+    private String loseText;
+    private String restartText;
+    private GameController gameC;
+    /**
+     * Needs the GameController for information.
+     * @param gameC the GameController.
+     */
     public TextController(GameController gameC) {
         this.gameC = gameC;
         this.scoreText = "SCORE: " + gameC.getScore();
@@ -28,7 +31,11 @@ public class TextController {
         this.healthText = "HEALTH: " + gameC.getPlayer().getHp();
         this.restartText =  "Press R to reset";
     }
-    
+    /**
+     * Updates the strings of the score and health texts.
+     * The Renderer handles rendering the text from the Strings
+     * in this class.
+     */
     public void updateTexts() {
         this.scoreText = "SCORE: " + gameC.getScore();
         this.healthText = "HEALTH: " + gameC.getPlayer().getHp();

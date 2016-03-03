@@ -14,26 +14,44 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- *
+ * The Renderer class handles the Graphical
+ * representation of the gamestate.
  * @author max
  */
 public class Renderer {
     
-    GraphicsContext gc;
-    GameController gameC;
-        
+    private GraphicsContext gc;
+    private GameController gameC;
+    /**
+     * The renderer needs the GraphicsContext
+     * for controlling what is displayed and
+     * the GameController to get the state of 
+     * the game logic.
+     * @param gc the GraphicsContext.
+     * @param gameC the GameControler.
+     */   
     public Renderer(GraphicsContext gc, GameController gameC) {
         this.gc = gc;
         this.gameC = gameC;
     }
-    
+    /**
+     * Draws all the existing GameObjects
+     * on their position and direction in 
+     * the current game state.
+     * @param plr
+     * @param player 
+     */
     public void renderAll(ImageView plr, Player player) {
         renderPlayer(plr, player);
         renderBullets();
         renderEnemies();
         renderTexts();
     }
-    
+    /**
+     * Refreshes and clears the canvas.
+     * This means clearing the last picture and
+     * redrawing only the background.
+     */
     public void refreshCanvas() {
         gc.setFill(Color.DARKSLATEBLUE);
         gc.fillRect(0, 0, 512, 512);

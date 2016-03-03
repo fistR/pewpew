@@ -6,7 +6,9 @@
 package com.mycompany.pewpewgame.objects;
 
 /**
- *
+ * The Orientation class exists to
+ * provide easy calculations for which direction
+ * GameObjects move.
  * @author max
  */
 public class Orientation {
@@ -24,7 +26,11 @@ public class Orientation {
     public String getOrientation() {
         return this.current;
     }
-    
+    /**
+     * Converting the direction to degrees 
+     * applicable to the JavaFX instance.
+     * @return 
+     */
     public int getRotationInDegrees() {
         if (this.current.equals("LEFT")) {
             return 90;

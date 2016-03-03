@@ -13,45 +13,59 @@ import javafx.scene.input.KeyEvent;
 import com.mycompany.pewpewgame.objects.Player;
 
 /**
+ * This class is used to handle player input.
  *
  * @author max
  */
 public class InputHandler {
-    
+
     GameController gameC;
     ArrayList<String> input = new ArrayList<String>();
-    
+
     public InputHandler(GameController g) {
         this.gameC = g;
     }
-    
+
+    /**
+     * The scene methods give KeyEvents that we register here. To get smooth
+     * movement, we add the input keycode to a string array, and remove it when
+     * the key is released.
+     *
+     * @param scene The game scene.
+     */
     public void registerInputs(Scene scene) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                public void handle(KeyEvent e) {
-                    String code = e.getCode().toString();
-                    if (!input.contains(code)) {
-                        input.add(code);
-                    }                        
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                if (!input.contains(code)) {
+                    input.add(code);
                 }
-            }); 
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-                public void handle(KeyEvent e) {
-                    String code = e.getCode().toString();
-                    input.remove(code);
-                }
-            });
-    }
-    
-    public void handleInputs(Player player) {
-        if (player.getHp() <= 0) {
-            if (input.contains("R")) {
-                gameC.reset();
-            }   
-            if (input.contains("ESCAPE")) {
-                System.exit(0);
             }
-            return;
-        }        
+        });
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                input.remove(code);
+            }
+        });
+    }
+
+    /**
+     * This method deals with what happens if specific keys are pressed. The
+     * arrow keys change the direction and move the player forward. Spacebar is
+     * used to fire. If held down, it fires once, waits a second and then
+     * rapidfire. Rarely useful feature. ESC to exit and R to restart.
+     *
+     * @param player The player object.
+     */
+    public void handleInputs(Player player) {
+        if (player.getHp() > 0) {
+            handleAliveInputs(player);
+        }
+        handleAlwaysInputs(player);
+    }
+
+    private void handleAliveInputs(Player player) {
         if (input.contains("LEFT")) {
             player.getOrientation().current = "LEFT";
             player.move(player.getOrientation());
@@ -72,6 +86,9 @@ public class InputHandler {
             gameC.spawnBullet(player.getPosX() + 6, player.getPosY() - 6, player.getOrientation());
             input.remove("SPACE");
         }
+    }
+
+    private void handleAlwaysInputs(Player player) {
         if (input.contains("R")) {
             gameC.reset();
         }
@@ -79,5 +96,5 @@ public class InputHandler {
             System.exit(0);
         }
     }
-    
+
 }

@@ -13,24 +13,25 @@ import java.util.ArrayList;
 
 /**
  *  This is the master controller of the
- *  game logic. It uses subcontrollers and object methods to complete most of its tasks.
+ *  game logic. This handles updating the gamestate. 
+ *  It uses subcontrollers and object methods to complete most of its tasks.
  *  rendering is done using the Renderer class.
  * 
  */
 public class GameController {
     
-    EnemyController enemyC;
-    EnemyAI ai;
-    CollisionController cc;
-    TextController textC;
-    Player player;
-    int score;
-    public ArrayList<Bullet> bullets = new ArrayList();
+    private EnemyController enemyC;
+    private EnemyAI ai;
+    private CollisionController cc;
+    private TextController textC;
+    private Player player;
+    private int score;
+    private ArrayList<Bullet> bullets = new ArrayList();
     
     /**
      * The constructor needs a player instance
      * and then initializes the controllers of 
-     * more specific tasks
+     * more specific tasks.
      * @param player 
      */
     public GameController(Player player) {
@@ -76,7 +77,7 @@ public class GameController {
         player.setPosY(256);
     }
     /**
-     * The master logic update function
+     * The master logic update function.
      */
     public void updateAll() {
         updateBullets();
@@ -98,7 +99,7 @@ public class GameController {
      * by its speed and orientation.
      */
     private void updateEnemies() {
-        for (GameObject e: enemyC.enemies) {
+        for (GameObject e: enemyC.getEnemies()) {
             e.move(e.getOrientation());
             cc.checkForCollisions(e);
         }
