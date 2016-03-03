@@ -12,9 +12,10 @@ testin setupissa mättää.
 käyttöohjeet valmiiksi, rakennekuvaus valmiiksi. Vain kontrolleritestit jäljellä (vieläkin) mutta en saanut toimimaan ainuttakaan testiä. 
 - 3h. Tein vähän javadoccia ja sain about kaikki olio luokkien testit tehtyä, mutta kontrolleriluokat herjaa kokoajan samaa virhettä.
 - 1h. Tein checkstylen ja fiksasin kaikki virheet. Hienonsin koodia
-- Uusi yritys testien suhteen, alkaa olla aika saada niitä tehtyä. Noin 3 tuntia. En saanut toimimaan mutta troubleshoottailemassa kävin läpi suuren osan koodista ja fiksailin tehokkaammaksi ja nätimmäksi. Grafiikka ja logiikka jne nyt kaikki kokonaan erilleen. Main luokka nyt nätti ja lyhyitä metodeja vihdoinkin.
+- Uusi yritys testien suhteen, alkaa olla aika saada niitä tehtyä. Noin 3 tuntia. En saanut toimimaan mutta troubleshoottailemassa kävin läpi suuren osan koodista ja fiksailin tehokkaammaksi ja nätimmäksi. Grafiikka ja logiikka jne nyt kaikki kokonaan erilleen. Main luokka nyt nätti ja lyhyitä metodeja vihdoinkin. Tehty vielä 
+Renderer luokka kaiken grafiikan hallintaan.
 - Demotilaisuus seuraavana päivänä. Noin 8 tuntia. Enemy, bullet, collision spawnpoint ja orientation luokat tehty.
-Myös kaikki kontrollerit paitsi renderer tehty. Ampuminen, tappaminen, kuoleminen, pisteiden saaminen jne koko peli toimii nyt, ei mitään mahdollisia bugeja tai vikoja omalla koneella.
+Myös kaikki kontrollerit tehty. Ampuminen, tappaminen, kuoleminen, pisteiden saaminen jne koko peli toimii nyt, ei mitään mahdollisia bugeja tai vikoja omalla koneella.
 - Noin 4 tuntia. Suurin osa ajasta meni yrittämään saada testejä toimimaan mutta netbeans herjaa "internal graphics" etc. Jätin tekemättä.
 - Noin 2 tuntia. Kaikki aika meni PIT raportin aikaansaamiseksi. Ratkaisin ongelman laittamalla pom.xmliin kohtaan
 <targetTests> vain * eli kaikki testit kaikkialla, koska mitkään polut ei toimineet.
