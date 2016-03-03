@@ -2,4 +2,10 @@
 
 [Käyttöohjeet](dokumentointi/Kayttoohjeet.md)
 
-[aiheen kuvaus](dokumentointi/aiheenKuvausJaRakenne.md)
+[Kuvaus, rakenne, kaaviot](dokumentointi/aiheenKuvausJaRakenne.md)
+
+[Manuaaliset testit](dokumentointi/Testausdokumentaatio.md)
+
+[Tuntikirjanpito](dokumentointi/tuntikirjanpito.md)
+
+
