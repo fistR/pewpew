@@ -11,12 +11,6 @@ pohjassa tarpeeksi kauan.
 R resetoi pelin.
 
 ESC sulkee pelin.
-![Alt text](movesekvenssi.png)
-
-
-spacebar ampuminen:
-
-![Alt text](bulletlife.png)
 
 Luokka rakenne:
 
