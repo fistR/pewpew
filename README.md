@@ -1,5 +1,5 @@
 #PewPew Game#
 
-[Käyttöohjeet](dokumentointi/kayttoohjeet.md)
+[Käyttöohjeet](dokumentointi/Kayttoohjeet.md)
 
 [aiheen kuvaus](dokumentointi/aiheenKuvausJaRakenne.md)
