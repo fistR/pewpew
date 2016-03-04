@@ -3,7 +3,7 @@
 **Total: n. 40h**
 
 
-
+- 8h. Kaikki ei-JavaFX orientoidut luokat nyt testattu. Monet testeistä turhia koska manuaalinen testaaminen tämmöisessä pelissä ehkä järkevämpää. Myös manuaaliset testit tehty ja dokumentoitu.
 - 2h. Sama kun viimeksi, vieläkin nullpointer ongelmaa kontrolleritesteissä. Viimeinen viikko ja vieläkään
 0 toimivaa kontrolleritestiä vaikka oliotestit meni ajat sitten.
 - 2h. Googlasin ja koitin saada testejä toimimaan kontrolleriluokille ja sain pois Internal Graphics Not Initialized Yet errorin mutta sen sijaan tulee NullPointerException. En saanut toimimaan millään. Jotenkin 
