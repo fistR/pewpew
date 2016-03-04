@@ -43,7 +43,10 @@
                     </targetTests>
                     <excludedClasses>
                         <param>com.mycompany.pewpewgame.controllers.Peli</param>
+                        <param>com.mycompany.pewpewgame.controllers.Renderer</param>
+                        <param>com.mycompany.pewpewgame.controllers.InputHandler</param>
                     </excludedClasses>
+                    <verbose>true</verbose>
                 </configuration>
         </plugin>
       <plugin>

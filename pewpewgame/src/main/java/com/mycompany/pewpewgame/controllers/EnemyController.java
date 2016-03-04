@@ -37,7 +37,6 @@ public class EnemyController {
         initSpawns();
         this.spawnedcount = 0;
         spawner();
-        System.out.println("keke");
         System.out.println("" + enemies.size());
     }
     /**

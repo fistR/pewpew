@@ -126,9 +126,34 @@ public class CollisionController {
      */
     private void handlePlayerCollisions(GameObject o) {
         if (o == gc.getPlayer()) {
-            System.out.println("damage");
             gc.damagePlayer();
             eC.getEnemies().remove(gc.getPlayer().getCollision().getCollisionWith());
         }
     }
+
+    public EnemyController geteC() {
+        return eC;
+    }
+
+    public void seteC(EnemyController eC) {
+        this.eC = eC;
+    }
+
+    public GameController getGc() {
+        return gc;
+    }
+
+    public void setGc(GameController gc) {
+        this.gc = gc;
+    }
+
+    public ArrayList<GameObject> getColls() {
+        return colls;
+    }
+
+    public void setColls(ArrayList<GameObject> colls) {
+        this.colls = colls;
+    }
+    
+    
 }

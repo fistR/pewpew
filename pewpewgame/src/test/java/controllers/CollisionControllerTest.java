@@ -17,6 +17,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,7 +34,7 @@ public class CollisionControllerTest {
     Player player;
     Enemy e, e2;
     Bullet bullet, bullet2;
-    static Thread t;
+    Orientation o;
     
     
     public CollisionControllerTest() {
@@ -48,15 +50,16 @@ public class CollisionControllerTest {
 }
     
     @BeforeClass
-    public static void setUpClass() {
-        t = new Thread("JavaFX Init Thread") {
+    public static void setUpClass() throws InterruptedException {
+        Thread t = new Thread("JavaFX Init Thread") {
+        @Override
         public void run() {
             Peli.launch(AsNonApp.class, new String[0]);
         }
     };
     t.setDaemon(true);
     t.start();
-    
+    Thread.sleep(1500);
     }
     
     @AfterClass
@@ -65,28 +68,119 @@ public class CollisionControllerTest {
     
     @Before
     public void setUp() {
-        
+        o = new Orientation("LEFT");
         gc = Peli.gameC;
-        Peli.gameC.spawnBullet(100, 100, new Orientation("RIGHT"));
-        gc.spawnBullet(300, 300, new Orientation("LEFT"));
-        bullet = gc.getBullets().get(0);
-        bullet = gc.getBullets().get(1);
-        player = gc.getPlayer();
-        
-        e = new Enemy(256,256);
-        e2 = new Enemy(100, 100);
+        player = Peli.player;
+        bullet = new Bullet(100,100,o);
+        gc.getBullets().add(bullet);
         eC = gc.getEnemyC();
-        eC.enemies.add(e);
-        eC.enemies.add(e2);
-        CC = gc.getCc();
+        e = new Enemy(100,100);
+        e2 = new Enemy(200,200);
         
+        eC.getEnemies().add(e);
+        eC.getEnemies().add(e2);
+        player.setPosX(100);
+        player.setPosY(100);
+        CC = new CollisionController(eC, gc);
     }
     
     @After
     public void tearDown() {
+        o = new Orientation("LEFT");
+        gc = Peli.gameC;
+        player = Peli.player;
+        bullet = new Bullet(100,100,o);
+        gc.getBullets().add(bullet);
+        eC = gc.getEnemyC();
+        e = new Enemy(100,100);
+        e2 = new Enemy(200,200);
+        
+        eC.getEnemies().add(e);
+        eC.getEnemies().add(e2);
+        player.setPosX(100);
+        player.setPosY(100);
+        CC = new CollisionController(eC, gc);
     }
 
     @Test
-    public void bulletCollidesWithBoundaryLeft() {
+    public void constructorTest() {
+        
+        assertEquals(CC.getGc(), gc);
+    }
+    @Test
+    public void constructorTesteC() {
+        
+        assertEquals(CC.geteC(), eC);
+    }
+    
+    @Test
+    public void constructorTestColls() {
+        CollisionController c = new CollisionController(eC, gc);
+        c.getColls().add(player);
+        assertEquals(c.getColls().get(0), player);
+    }
+    
+    @Test
+    public void checkForEnemyTest() {
+        CC.checkForEnemy(e);
+        assertEquals(CC.getColls().get(0), player);
+    }
+    @Test
+    public void checkForEnemyTest2() {
+        CC.checkForEnemy(e);
+        assertNotEquals(player.getCollision(), null);
+    }
+//    @Test
+//    public void checkForEnemyTestBoundary() {
+//        e.setPosX(80);
+//        e.setPosY(80);
+//        CC.handleCollisions();
+//        CC.checkForEnemy(e);
+//        assertEquals(player.getCollision().getCollisionWith(), null);
+//    }
+    @Test
+    public void checkForEnemyThroughMain() {
+        CC.checkForCollisions(e);
+        assertEquals(CC.getColls().get(0).getCollision().getCollisionWith(), e);
+    }
+    
+    @Test
+    public void checkForBulletThroughMain() {
+        CC.checkForCollisions(bullet);
+        assertEquals(CC.getColls().get(0), bullet);
+    }
+    
+    @Test
+    public void checkForBulletTest() {
+        CC.checkForBullet(bullet);
+        assertEquals(CC.getColls().get(0), bullet);
+    }
+    @Test
+    public void checkForBulletTest2() {
+        CC.checkForBullet(bullet);
+        assertNotEquals(bullet.getCollision(), null);
+    }
+    @Test
+    public void checkForBulletWallTest() {
+        bullet2 = new Bullet(513,513, o);
+        CC.checkForBullet(bullet2);
+        assertEquals(null, bullet2.getCollision().getCollisionWith());
+        
+    }
+    
+    @Test
+    public void handlePlayerCollisionsTest() {
+        player.setPosX(200);
+        player.setPosY(200);
+        CC.checkForCollisions(e2);
+        CC.handleCollisions();
+        assertEquals(player.getHp(),9);
+    }
+    @Test
+    public void handleBulletCollisionTest() {
+        CC.checkForCollisions(bullet);
+        
+        CC.handleCollisions();
+        assertEquals(-8, e.getHp());
     }
 }

@@ -41,7 +41,7 @@ public class Peli extends Application {
     static Renderer renderer;    
     static Timeline gameLoop;
     static KeyFrame kf;
-    static Player player;
+    public static Player player;
     public static GameController gameC;
     static InputHandler input;
     static ImageView plr;
