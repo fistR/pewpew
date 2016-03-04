@@ -1,6 +1,6 @@
 #Tuntikirjanpito#
 
-**Total: n. 40h**
+**Total: n. 45-50h**
 
 
 - 8h. Kaikki ei-JavaFX orientoidut luokat nyt testattu. Monet testeistä turhia koska manuaalinen testaaminen tämmöisessä pelissä ehkä järkevämpää. Myös manuaaliset testit tehty ja dokumentoitu.
